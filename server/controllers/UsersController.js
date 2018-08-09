@@ -1,7 +1,7 @@
 import validator from 'validator';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
-import Users from '../models/Users';
+import Users from '../models/Users.js';
 
 require('dotenv').config();
 
