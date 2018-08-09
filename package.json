@@ -4,8 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:dev": "nodemon server/app.js --exec babel-node --presets es2015,stage-2",
     "start": "babel-node -- server/app.js",
     "build": "webpack --config webpack.config.js",
+    "postinstall": "npm run prod-build",
+    "prebuild": "rm -rf ./dist",
+    "prod-build": "./node_modules/.bin/webpack --config ./webpack.config.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
