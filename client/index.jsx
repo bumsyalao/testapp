@@ -16,7 +16,6 @@ if (token) {
   if (decoded) {
     const userInfo = {
       id: decoded.id,
-      username: decoded.username,
       email: decoded.email
     };
     store.dispatch(
