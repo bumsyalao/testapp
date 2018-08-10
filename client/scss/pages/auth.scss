@@ -14,6 +14,9 @@ h5
 	width: 400px;
 	height: 450px;
 }
+.tabs{
+	cursor: pointer;
+}
 
 .tabs .indicator
 {
@@ -39,4 +42,7 @@ h5
     font-size: 1.64rem;
 	line-height: 110%;
 	margin-bottom: 40px;
+}
+.hide {
+	display: none;
 }

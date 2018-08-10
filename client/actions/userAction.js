@@ -22,7 +22,7 @@ export const loginRequest = loginInfo => dispatch =>
             localStorage.setItem('token', response.data.token);
             attachAuthToken(response.data.token);
             return dispatch(
-                loginSuccess(response.data.userDetails, response.data.message)
+                loginSuccess(response.data.UserDetails, response.data.message)
             );
         }).catch((error) => {
             throw error;
@@ -36,7 +36,7 @@ export const registerRequest = registerInfo => dispatch =>
 					localStorage.setItem('token', response.data.token);
 					attachAuthToken(response.data.token);
 					return dispatch(
-						registerSuccess(response.data.userDetails, response.data.message)
+						registerSuccess(response.data.UserDetails, response.data.message)
 					);
 				})
 					.catch((error) => {

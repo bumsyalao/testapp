@@ -34,9 +34,21 @@ class Auth extends Component {
 	 * @memberof Auth
 	 */
 	componentDidMount() {
-		// if (this.props.access.isAuthenticated) {
-		//   this.props.history.push('/dashboard/idea-list');
-		// }
+		const registerButton = document.getElementById('register-btn');
+		const loginButton = document.getElementById('login-btn');
+		const registerForm = document.getElementById('register');
+		const loginForm = document.getElementById('login');
+		registerButton.addEventListener('click', () => {
+			registerForm.classList.remove('hide');
+			loginForm.classList.add('hide');
+		});
+		loginButton.addEventListener('click', () => {
+			loginForm.classList.remove('hide');
+			registerForm.classList.add('hide');
+		});
+		
+		// res.userInfo.admin ? this.props.history.push('/admin-dashboard') : this.props.history.push('/user-dashboard')
+
 	}
 	/**
 		* Sets the event value to the state
@@ -64,7 +76,7 @@ class Auth extends Component {
 		this.props.loginRequest(loginInfo)
 			.then((res) => {
 				this.setState({ loggedIn: true });
-				this.props.history.push('/dashboard');
+				res.userInfo.admin ? this.props.history.push('/admin-dashboard') : this.props.history.push('/user-dashboard');
 				Materialize.toast(res.message, 3000, 'green');
 			})
 			.catch((error) => {
@@ -88,7 +100,7 @@ class Auth extends Component {
 		this.props.registerRequest(registerInfo)
 			.then((res) => {
 				this.setState({ loggedIn: true });
-				this.props.history.push('/dashboard');
+				res.userInfo.admin ? this.props.history.push('/admin-dashboard') : this.props.history.push('/user-dashboard');
 				Materialize.toast(res.message, 3000, 'green');
 			}).catch((error) => {
 				Materialize.toast(error.response.data.message, 3000, 'red');
@@ -98,10 +110,10 @@ class Auth extends Component {
 	render() {
 		return (
 			<div>
-				<div className="container white z-depth-2">
+				<div className="container white z-depth-2" id="user_options-form">
 					<ul className="tabs teal">
-						<li className="tab col s3"><a className="white-text active" href="#login">login</a></li>
-						<li className="tab col s3"><a className="white-text" href="#register">register</a></li>
+						<li className="tab col s3"><a className="white-text active" id="login-btn">login</a></li>
+						<li className="tab col s3"><a className="white-text" id="register-btn">register</a></li>
 					</ul>
 					<div id="login" className="col s12">
 						<form className="col s12">
@@ -110,7 +122,7 @@ class Auth extends Component {
 								<div className="row">
 									<div className="input-field col s12">
 										<input
-											id="email-login"
+											id="email"
 											type="email"
 											value={this.state.email}
 											onChange={this.onChange}
@@ -123,7 +135,7 @@ class Auth extends Component {
 								<div className="row">
 									<div className="input-field col s12">
 										<input
-											id="password-login"
+											id="password"
 											value={this.state.password}
 											onChange={this.onChange}
 											type="password"
@@ -149,7 +161,7 @@ class Auth extends Component {
 							</div>
 						</form>
 					</div>
-					<div id="register" className="col s12">
+					<div id="register" className="col s12 hide">
 						<form className="col s12">
 							<div className="form-container">
 								<div>
@@ -165,7 +177,7 @@ class Auth extends Component {
 								<div className="row">
 									<div className="input-field col s12">
 										<input
-											id="email-register"
+											id="email"
 											value={this.state.email}
 											onChange={this.onChange}
 											type="email"
@@ -176,7 +188,7 @@ class Auth extends Component {
 								<div className="row">
 									<div className="input-field col s12">
 										<input
-											id="password-register"
+											id="password"
 											value={this.state.password}
 											onChange={this.onChange}
 											type="password"
@@ -186,6 +198,7 @@ class Auth extends Component {
 								</div>
 								<center>
 									<button
+										id="register-btn"
 										className="btn waves-effect waves-light teal"
 										onClick={this.onRegister}
 										type="submit"

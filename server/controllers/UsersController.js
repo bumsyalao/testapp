@@ -40,7 +40,8 @@ class User {
 					);
 					const UserDetails = {
 						email: newUser.email,
-						id: newUser._id
+						id: newUser._id,
+						admin: newUser.admin
 					};
 
 					//return user and token
@@ -77,7 +78,8 @@ class User {
 								);
 								const UserDetails = {
 									email: foundUser.email,
-									id: foundUser._id
+									id: foundUser._id,
+									admin: foundUser.admin
 								};
 								return res.status(200).send({
 									success: true,
@@ -89,7 +91,7 @@ class User {
 							return res.status(404).send({
 								success: false,
 								error: 'Invalid',
-								message: 'User does not exist'
+								message: 'Incorrect Password'
 							});
 						});
 					}
@@ -97,7 +99,7 @@ class User {
 						return res.status(400).send({
 							success: false,
 							error: 'Invalid',
-							message: 'Invalid email or password'
+							message: 'Incorrect email or password'
 						});
 					}
 				})
@@ -168,16 +170,16 @@ class User {
 		Users.find()
 			.exec()
 			.then((allUsers) => {
-			res.status(200).send({
-				success: true,
-				message: 'Users found',
-				allUsers
-			});
-		}).catch(error => 
-			res.status(500).send({
-				success: false,
-				message: 'Internal server error'
-			}));
+				res.status(200).send({
+					success: true,
+					message: 'Users found',
+					allUsers
+				});
+			}).catch(error =>
+				res.status(500).send({
+					success: false,
+					message: 'Internal server error'
+				}));
 	}
 
 	deleteUser(req, res) {
