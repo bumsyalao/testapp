@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import users from './userReducer';
+import access from './accessReducer';
 
 export default combineReducers({
-    users
+    access
 });
