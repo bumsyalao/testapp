@@ -46,9 +46,20 @@ class Auth extends Component {
 			loginForm.classList.remove('hide');
 			registerForm.classList.add('hide');
 		});
-		
-		// res.userInfo.admin ? this.props.history.push('/admin-dashboard') : this.props.history.push('/user-dashboard')
-
+	// 	if (this.props.access.isAuthenticated) {
+	// 		this.props.access.user.admin ? this.props.history.push('/admin-dashboard') : this.props.history.push('/user-dashboard')
+	// 	}
+	}
+	/**
+	 * Remove event listeners when component unmounts
+	 *
+	 * @memberof Auth
+	 */
+	componentWillUnmount() {
+		// const registerButton = document.getElementById('register-btn');
+		// const loginButton = document.getElementById('login-btn');
+		// registerButton.removeEventListener();
+		// loginButton.removeEventListener();
 	}
 	/**
 		* Sets the event value to the state

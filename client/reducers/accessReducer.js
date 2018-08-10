@@ -1,7 +1,7 @@
 import * as types from '../actions/types';
 
 export default (
-	state = { user: {}, message: null, isAuthenticated: false },
+	state = { user: {}, message: null, isAuthenticated: false, newUser: {} },
 	action
 ) => {
 	switch (action.type) {
@@ -13,6 +13,19 @@ export default (
 				user: action.userInfo,
 				message: action.message,
 				isAuthenticated: true
+			};
+		case types.LOGOUT_USER:
+			return {
+				...state,
+				user: {},
+				message: null,
+				isAuthenticated: false
+			};
+		case types.CREATE_USER:
+			return {
+				...state,
+				newUser: action.newUser,
+				message: action.message
 			};
 		default:
 			return state;
