@@ -19,7 +19,7 @@
         &:hover {
             background-color: #009688 !important;
             color: white !important;
-            padding: 30px;
+            padding: 20px;
         }
     }
 
@@ -63,5 +63,24 @@
 .close:focus {
     color: #000;
     text-decoration: none;
+    cursor: pointer;
+}
+
+
+.users-table {
+    margin: 90px;
+
+    h5 {
+        color: #009688;
+    }
+}
+
+.table-row {
+  .delete-btn {
+      background-color:#ef5350  !important;
+  }
+}
+
+.select-page {
     cursor: pointer;
 }

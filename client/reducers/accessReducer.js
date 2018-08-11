@@ -1,7 +1,16 @@
 import * as types from '../actions/types';
 
+const initialState = {
+	user: {}, 
+	message: null, 
+	isAuthenticated: false, 
+	newUser: {},
+	paginate: {},
+	allUsers: []
+}
+
 export default (
-	state = { user: {}, message: null, isAuthenticated: false, newUser: {} },
+	state = initialState,
 	action
 ) => {
 	switch (action.type) {
@@ -27,6 +36,12 @@ export default (
 				newUser: action.newUser,
 				message: action.message
 			};
+		case types.GET_USERS:
+			return {
+				...state,
+				paginate: action.paginate,
+				allUsers: action.allUsers
+			}
 		default:
 			return state;
 	}

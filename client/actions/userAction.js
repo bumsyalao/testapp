@@ -1,6 +1,6 @@
 import axios from 'axios';
 import attachAuthToken from '../utils/attachAuthToken';
-import { LOGIN_USER, REGISTER_USER, LOGOUT_USER, CREATE_USER } from './types';
+import { LOGIN_USER, REGISTER_USER, LOGOUT_USER, CREATE_USER, GET_USERS } from './types';
 
 export const loginSuccess = (userInfo, message) => ({
 	type: LOGIN_USER,
@@ -22,6 +22,11 @@ export const createUserSuccess = (newUser, message) => ({
 	type: CREATE_USER,
 	newUser,
 	message
+});
+export const loadUsersSuccess = (allUsers, paginate) => ({
+	type: GET_USERS,
+	paginate,
+	allUsers
 });
 
 export const loginRequest = loginInfo => dispatch =>
@@ -69,3 +74,22 @@ export const createUser = newUser => dispatch =>
 		}).catch((error) => {
 			throw error;
 		});
+
+export const getAllUsers = (selectPage) => dispatch =>
+		axios
+			.get(`/api/v1/users/${selectPage}`)
+			.then((response) => {
+				dispatch(loadUsersSuccess(response.data.allUsers, response.data.paginate ));
+			}).catch((error) => {
+				throw error;
+			});
+
+export const deleteUser = userId => dispatch =>
+			axios
+				.delete(`/api/v1/user/${userId}`)
+				.then(() => {
+					dispatch(getAllUsers());
+				}).catch((error) => {
+					throw error;
+				});
+				

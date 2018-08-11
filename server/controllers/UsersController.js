@@ -2,6 +2,7 @@ import validator from 'validator';
 import jwt from 'jsonwebtoken';
 import crypto from 'crypto';
 import Users from '../models/Users';
+import paginate from '../middleware/paginate';
 
 require('dotenv').config();
 
@@ -167,19 +168,25 @@ class User {
 	}
 
 	retrieveUsers(req, res) {
+		const limit = 5;
+		const offset = 0;
+		const page = req.params.selectPage || 1
 		Users.find()
-			.exec()
-			.then((allUsers) => {
-				res.status(200).send({
-					success: true,
-					message: 'Users found',
-					allUsers
+			.skip((limit * page) - limit)
+			.limit(limit)
+			.exec((err, allUsers) => {
+				Users.count().exec((err, count) => {
+					if(err){
+						return res.status(404).send({ success: false, message: err.message });
+					}
+					return res.status(200).send({
+						success: true,
+						message: 'Users found',
+						paginate: paginate(count, limit, offset),
+						allUsers
+					});
 				});
-			}).catch(error =>
-				res.status(500).send({
-					success: false,
-					message: 'Internal server error'
-				}));
+			});
 	}
 
 	deleteUser(req, res) {

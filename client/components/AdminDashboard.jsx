@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, withRouter } from 'react-router-dom';
-import { logoutRequest, createUser } from '../actions/userAction';
+import ReactPaginate from 'react-paginate';
+import Table from '../components/Table';
+import { logoutRequest, createUser, getAllUsers } from '../actions/userAction';
 
 class AdminDashboard extends Component {
 	/**
@@ -13,11 +15,13 @@ class AdminDashboard extends Component {
 		super(props);
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			pageCount: 0
 		};
 		this.onChange = this.onChange.bind(this);
 		this.logout = this.logout.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.handlePageClick = this.handlePageClick.bind(this);
 	}
 	/**
 	 * Check if user is authenticated
@@ -46,31 +50,67 @@ class AdminDashboard extends Component {
 		}
 	}
 	/**
+	 *Get All users
+	 *
+	 * @memberof AdminDashboard
+	 */
+	componentWillMount() {
+		this.props.getAllUsers().catch();
+	}
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			pageCount: nextProps.paginate.pageCount,
+			count: nextProps.paginate.count,
+			allUsers: nextProps.foundUsers
+		});
+	}
+	/**
 	 * Sets value to state
 	 *
 	 * @param {*} event
 	 * @memberof AdminDashboard
 	 */
 	onChange(event) {
-    this.setState({ [event.target.id]: event.target.value });
+		this.setState({ [event.target.id]: event.target.value });
 	}
-	onSubmit(event){
+	/**
+	 * Create User
+	 *
+	 * @param {*} event
+	 * @memberof AdminDashboard
+	 */
+	onSubmit(event) {
 		event.preventDefault();
 		const userInfo = {
 			email: this.state.email,
 			password: this.state.password
 		};
 		this.props.createUser(userInfo)
-			.then((res) =>{
+			.then((res) => {
 				Materialize.toast(res.message, 5000, 'green');
 				document.getElementById('myModal').style.display = "none";
+				this.props.getAllUsers().catch();
 				this.setState({
 					email: '',
 					password: ''
 				});
-			}).catch((err) =>{
+			}).catch((err) => {
 				Materialize.toast(err.response.data.message, 5000, 'red');
 			});
+	}
+	/**
+	 * Handle page click
+	 *
+	 * @param {*} pageData
+	 * @memberof AdminDashboard
+	 */
+	handlePageClick(pageData) {
+		const selected = pageData.selected;
+		const limit = 5;
+		const offset = Math.ceil(selected * limit);
+		this.setState({ offset });
+		const selectPage = selected + 1;
+		this.props.getAllUsers(selectPage).catch();
 	}
 	/**
 	 * Logout User
@@ -91,6 +131,7 @@ class AdminDashboard extends Component {
 	 * @memberof AdminDashboard
 	 */
 	render() {
+		console.log(this.props.foundUsers);
 		return (
 			<div>
 				<div className="navbar">
@@ -144,13 +185,50 @@ class AdminDashboard extends Component {
 						>Logout</a>
 					</div>
 				</div>
+				<div>
+					<div className="users-table">
+						<h5> USERS </h5>
+						<table>
+							<thead>
+								<tr>
+									<th>Email</th>
+								</tr>
+							</thead>
+							<tbody>
+								{this.props.foundUsers.map(user => (
+									<Table
+										key={user._id}
+										id={user._id}
+										email={user.email}
+										admin={user.admin}
+									/>
+								))}
+							</tbody>
+						</table>
+						<div className="select-page">
+						{(this.state.count > 5) && <ReactPaginate
+                      previousLabel={'previous'}
+                      nextLabel={'next'}
+                      pageCount={this.state.pageCount}
+                      marginPagesDisplayed={1}
+                      pageRangeDisplayed={3}
+                      onPageChange={this.handlePageClick}
+                      containerClassName={'pagination'}
+                      subContainerClassName={'pages pagination'}
+											activeClassName={'active'}
+										/>}
+							</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
 
 }
 const mapStateToProps = state => ({
-	access: state.access
+	access: state.access,
+	foundUsers: state.access.allUsers,
+	paginate: state.access.paginate
 });
 
-export default connect(mapStateToProps, { logoutRequest, createUser })(withRouter(AdminDashboard));
+export default connect(mapStateToProps, { logoutRequest, createUser, getAllUsers })(withRouter(AdminDashboard));
