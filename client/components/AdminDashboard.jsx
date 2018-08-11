@@ -131,7 +131,6 @@ class AdminDashboard extends Component {
 	 * @memberof AdminDashboard
 	 */
 	render() {
-		console.log(this.props.foundUsers);
 		return (
 			<div>
 				<div className="navbar">
