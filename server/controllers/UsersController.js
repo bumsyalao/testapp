@@ -176,7 +176,7 @@ class User {
 			.limit(limit)
 			.exec((err, allUsers) => {
 				Users.count().exec((err, count) => {
-					if(err){
+					if (err) {
 						return res.status(404).send({ success: false, message: err.message });
 					}
 					return res.status(200).send({
@@ -187,6 +187,34 @@ class User {
 					});
 				});
 			});
+	}
+
+	updateUser(req, res) {
+		Users.findOne({ _id: req.decoded.id }).exec().then((adminUser) => {
+			if (adminUser.admin) {
+				Users.findOne({ _id: req.params.userId }).exec().then((updatedUser) => {
+					if (req.body.email) {
+						updatedUser.email = req.body.email
+						updatedUser.save((err) => {
+							if (err) {
+								return res.status(400).send({
+									success: false,
+									message: 'There was an error updating user'
+								});
+							} else {
+								return res.status(200).send({
+									success: true,
+									message: 'User has been updated succesfully',
+									updatedUser
+								});
+							}
+						})
+					} else {
+						return res.status(400).send({ success: false, message: 'Please enter a valid email' });
+					}
+				}).catch(err => res.status(404).send({ success: false, message: 'User does not exist' }));
+			}
+		}).catch(err => res.status(401).send({ success: false, message: 'You are not authorized to update user' }));
 	}
 
 	deleteUser(req, res) {

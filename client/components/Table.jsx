@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { deleteUser } from '../actions/userAction';
 
 class Table extends Component {
@@ -28,6 +29,7 @@ class Table extends Component {
 			}
 		}
 	}
+
 	/**
 	 * Function to delete user
 	 *
@@ -53,35 +55,11 @@ class Table extends Component {
 			<tr className="table-row">
 				<td>{email} {admin ? <div className="chip">Admin</div> : null}</td>
 				<td>
-					{admin ? <a className="btn disabled">Edit</a> : <a className="btn myBtn">
-						Edit</a>}
-					<div id="myModal" className="modal">
-						<div className="modal-content">
-							<span className="close">&times;</span>
-							<div className="input-field col s12">
-								<input
-									id="email"
-									
-
-									type="email"
-									className="validate"
-									required
-								/>
-								<label htmlFor="email">Email</label>
-							</div>
-							<center>
-								<button
-									className="btn waves-effect waves-light teal"
-
-									type="submit"
-									name="action"
-								>
-									Submit
-							</button>
-							</center>
-						</div>
-
-					</div>
+					{admin ? <a className="btn disabled">Edit</a> : <Link 
+						className="btn"
+						to={`/update-user/${id}`}>
+						Edit</Link>
+					}
 				</td>
 				<td>{admin ? <a className="btn disabled">Delete</a> : <a className="delete-btn btn" onClick={this.onDelete}>Delete</a>}</td>
 			</tr>

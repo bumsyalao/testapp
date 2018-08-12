@@ -205,18 +205,18 @@ class AdminDashboard extends Component {
 							</tbody>
 						</table>
 						<div className="select-page">
-						{(this.state.count > 5) && <ReactPaginate
-                      previousLabel={'previous'}
-                      nextLabel={'next'}
-                      pageCount={this.state.pageCount}
-                      marginPagesDisplayed={1}
-                      pageRangeDisplayed={3}
-                      onPageChange={this.handlePageClick}
-                      containerClassName={'pagination'}
-                      subContainerClassName={'pages pagination'}
-											activeClassName={'active'}
-										/>}
-							</div>
+							{(this.state.count > 5) && <ReactPaginate
+								previousLabel={'previous'}
+								nextLabel={'next'}
+								pageCount={this.state.pageCount}
+								marginPagesDisplayed={1}
+								pageRangeDisplayed={3}
+								onPageChange={this.handlePageClick}
+								containerClassName={'pagination'}
+								subContainerClassName={'pages pagination'}
+								activeClassName={'active'}
+							/>}
+						</div>
 					</div>
 				</div>
 			</div>

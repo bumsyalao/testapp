@@ -13,6 +13,8 @@ module.exports = (app) => {
     app.post('/api/v1/createuser', auth.checkToken, Users.createUser);
     //api to get all users
     app.get('/api/v1/users/:selectPage', auth.checkToken, Users.retrieveUsers);
+    //api to update user
+    app.put('/api/v1/update-user/:userId', auth.checkToken, Users.updateUser);
     //api to delete user
     app.delete('/api/v1/user/:userId', auth.checkToken, Users.deleteUser);
 };

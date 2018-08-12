@@ -93,3 +93,12 @@ export const deleteUser = userId => dispatch =>
 					throw error;
 				});
 				
+export const editUser = (userId, userEmail) => dispatch =>
+			axios
+				.put(`/api/v1/update-user/${userId}`, userEmail)
+				.then(() => {
+					dispatch(getAllUsers());
+				}).catch((error) => {
+					throw error;
+				});
+	
