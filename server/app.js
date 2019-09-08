@@ -41,7 +41,7 @@ app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, '../client', 'index.html'));
 });
 
-const PORT = parseInt(process.env.PORT, 10) || 3000;
+const PORT = parseInt(process.env.PORT, 10) || 5000;
 
 app.set('port', PORT);
 

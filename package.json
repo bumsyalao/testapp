@@ -1,7 +1,7 @@
 {
-  "name": "testapp",
+  "name": "todo-test-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "### Application Features",
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon server/app.js --exec babel-node --presets es2015,stage-2",
@@ -9,12 +9,12 @@
     "build": "webpack --config webpack.config.js",
     "postinstall": "npm run prod-build",
     "prebuild": "rm -rf ./dist",
-    "prod-build": "./node_modules/.bin/webpack --config ./webpack.config.prod.js",
+    "prod-build": "webpack --config ./webpack.config.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bumsyalao/testapp.git"
+    "url": "git+https://github.com/bumsyalao/todo-test-app.git"
   },
   "keywords": [
     "React",
@@ -23,9 +23,9 @@
   "author": "Bunmi Alao",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/bumsyalao/testapp/issues"
+    "url": "https://github.com/bumsyalao/todo-test-app/issues"
   },
-  "homepage": "https://github.com/bumsyalao/testapp#readme",
+  "homepage": "https://github.com/bumsyalao/todo-test-app#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "babel-core": "^6.26.3",
@@ -38,8 +38,6 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
-    "bcrypt": "^3.0.0",
-    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "copy-webpack-plugin": "^4.5.2",
     "cross-env": "^5.2.0",
@@ -55,7 +53,7 @@
     "jquery": "^3.3.1",
     "json-loader": "^0.5.7",
     "jsonwebtoken": "^8.3.0",
-    "morgan": "^1.9.0",
+    "moment": "^2.24.0",
     "node-sass": "^4.9.3",
     "path": "^0.12.7",
     "react": "16.2.0",

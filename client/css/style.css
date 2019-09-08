@@ -1,0 +1,215 @@
+body {
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #333;
+  font-family: 'Gochi Hand', cursive;
+  /* // font-family: "Gochi Hand", sans-serif;
+  // font-family:Nunito, Roboto, sans-serif; */
+  padding: 10px; }
+
+#notebook {
+  border-radius: 15px;
+  box-sizing: border-box;
+  margin: 5rem auto;
+  margin-left: 10rem;
+  padding-bottom: 10px;
+  position: relative;
+  max-width: 42rem;
+  min-height: 50rem; }
+  #notebook h1 {
+    font-size: 40px;
+    border-bottom: 4px double #F3A4C4;
+    padding: 50px 20px 10px; }
+  #notebook ul {
+    list-style: none;
+    padding: 0; }
+    #notebook ul img {
+      width: 30px;
+      height: 30px;
+      margin: 10px;
+      margin-bottom: 0px; }
+    #notebook ul li {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #2179C1;
+      font-size: 30px;
+      padding: 10px 0;
+      position: relative; }
+    #notebook ul p {
+      margin: 0;
+      padding-left: 60px;
+      position: relative; }
+      #notebook ul p:before {
+        background: transparent;
+        content: "";
+        border-radius: 100%;
+        border: 1px solid #333;
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 25px;
+        margin: auto; }
+      #notebook ul p:after {
+        content: "";
+        position: absolute;
+        top: 2px;
+        bottom: 0;
+        left: 37px;
+        margin: auto;
+        border: 3px solid transparent;
+        border-top: 0;
+        border-right: 0;
+        border-radius: 2px;
+        height: 0;
+        width: 0;
+        transform-origin: bottom left;
+        transform: rotate(-45deg);
+        transition: all .3s;
+        max-height: 0;
+        max-width: 0;
+        border-color: transparent; }
+
+.date {
+  box-sizing: border-box;
+  position: relative;
+  margin: 0 auto;
+  top: 30px;
+  height: 50px;
+  width: 50px;
+  border: 4px double #51B27F;
+  border-radius: 3px;
+  text-align: center; }
+  .date .month {
+    letter-spacing: 2px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -25px;
+    text-transform: uppercase;
+    text-align: center; }
+  .date .day {
+    background: #FFFFFD;
+    display: inline-block;
+    font-size: 2em;
+    margin: 5px 0 0 -15px; }
+  .date sup {
+    position: relative;
+    bottom: 10px; }
+
+@keyframes checkDown {
+  from {
+    border-left-color: #163839;
+    height: 0;
+    width: 0; }
+  to {
+    border-left-color: #163839;
+    height: 7px;
+    width: 0; } }
+
+@keyframes checkUp {
+  from {
+    border-bottom-color: transparent;
+    width: 0; }
+  to {
+    border-bottom-color: #163839;
+    width: 15px; } }
+
+@media (min-width: 500px) {
+  body {
+    padding: 10px 30px; }
+  #notebook h1 {
+    padding-top: 60px; }
+  #notebook ul sup:before {
+    content: "i mean "; }
+  .date {
+    position: absolute;
+    top: 0;
+    right: 0px;
+    padding: 0;
+    margin: 15px; } }
+
+.isDone {
+  color: green !important; }
+
+.shop-input {
+  margin-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+  .shop-input input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 4px double #89BD9E;
+    color: #474747;
+    font-family: 'Gochi Hand', cursive;
+    font-size: 30px !important;
+    font-weight: 500;
+    letter-spacing: -1px;
+    outline: 0;
+    width: 70px;
+    padding: 5px 20px;
+    text-align: center; }
+  .shop-input button {
+    font-family: 'Gochi Hand', cursive;
+    font-size: 20px;
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0.5rem 0.5rem;
+    text-transform: uppercase;
+    border-width: 2px; }
+    .shop-input button:hover {
+      transform: scale(0.95);
+      color: red;
+      background-color: #fff; }
+    .shop-input button:disabled:hover {
+      color: grey;
+      cursor: no-drop; }
+
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100vh;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */ }
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%; }
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold; }
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer; }
+
+/*# sourceMappingURL=style.css.map*/

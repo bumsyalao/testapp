@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import access from './accessReducer';
+import todo from './todoReducer';
 
 export default combineReducers({
-    access
+    todo
 });

@@ -1,20 +1,18 @@
-import Users from '../controllers/UsersController';
-import auth from '../middleware/auth';
+import Todo from '../controllers/TodoController';
 
 module.exports = (app) => {
     app.get('/api', (req,res) => {
         res.send('Hello World');
     });
-    //api to register admin user
-    app.post('/api/v1/register', Users.register);
-    //api to login admin user
-    app.post('/api/v1/login', Users.login);
-    //api to create user
-    app.post('/api/v1/createuser', auth.checkToken, Users.createUser);
-    //api to get all users
-    app.get('/api/v1/users/:selectPage', auth.checkToken, Users.retrieveUsers);
-    //api to update user
-    app.put('/api/v1/update-user/:userId', auth.checkToken, Users.updateUser);
-    //api to delete user
-    app.delete('/api/v1/user/:userId', auth.checkToken, Users.deleteUser);
+    //api to get all todos
+    app.get('/api/v1/todos', Todo.getAllTodos);
+
+    //api to create todo
+    app.post('/api/v1/todo', Todo.createTodo);
+    
+    //api to edit todo
+    app.put('/api/v1/todo/:id', Todo.editTodo);
+
+    //api to delete todo
+    app.delete('/api/v1/todo/:id', Todo.deleteTodo);
 };

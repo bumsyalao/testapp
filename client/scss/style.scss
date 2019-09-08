@@ -1,1 +1,309 @@
-@import 'pages/index';
+$accent:#51B27F;
+$accent2:#163839;
+
+body{
+  // background-image: url('https://previews.123rf.com/images/naum100/naum1001604/naum100160400038/54501564-sale-fashion-shopping-background-or-frame-clothes-and-accessories-vector-illustration.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  // min-width: 100vw;
+  color:#333;
+  font-family: 'Gochi Hand', cursive;
+  /* // font-family: "Gochi Hand", sans-serif;
+  // font-family:Nunito, Roboto, sans-serif; */
+  padding:10px;
+}
+
+#notebook{
+  // background: url('https://i.pinimg.com/originals/7b/1d/8e/7b1d8e865da2c11b788a21a0fb51d542.jpg');
+  border-radius: 15px;
+  box-sizing: border-box;
+  margin: 5rem auto;
+  margin-left: 10rem;
+  padding-bottom: 10px;
+  position: relative;
+  max-width: 42rem;
+  min-height: 50rem;
+  
+  h1{
+    font-size: 40px;
+    border-bottom:4px double #F3A4C4;
+    padding:50px 20px 10px;
+  }
+  
+  ul{
+    list-style:none;
+    padding:0;
+    
+    img {
+      width: 30px;
+      height: 30px;
+      margin: 10px;
+      margin-bottom: 0px;
+    }
+
+    li{
+      display: flex;
+      justify-content: space-between;
+      border-bottom:1px solid #2179C1;
+      font-size:30px;
+      padding:10px 0;
+      position:relative;
+    }
+    
+    p{
+      margin:0;
+      padding-left:60px;
+      position:relative;
+      
+      &:before{
+        background:transparent;
+        
+        content:"";
+        border-radius:100%;
+        border:1px solid #333;
+        height:20px;
+        width:20px;
+        
+        position:absolute;
+        top:0;
+        bottom:0;
+        left:25px;
+        margin:auto;
+      }
+      
+      &:after{
+        content:"";
+        
+        position:absolute;
+        top:2px;
+        bottom:0;
+        left:37px;
+        margin:auto;
+        
+        border:3px solid transparent;
+        border-top:0;
+        border-right:0;
+        border-radius:2px;
+        
+        height:0;
+        width:0;
+        
+        transform-origin:bottom left;
+        transform:rotate(-45deg);
+        
+        transition:all .3s;
+        max-height:0;
+        max-width:0;
+        border-color:transparent;
+      }
+    }
+    
+      
+    // input{
+    //   opacity:0;
+    //   position:absolute;
+    //   top:0;
+    //   left:0;
+    //   right:0;
+    //   bottom:0;
+    //   height:100%;
+    //   width:100%;
+    //   margin:0;
+    //   z-index:100;
+
+      
+    //   &:hover{
+    //     cursor:pointer;
+    //     + p sup{
+    //       max-width:170px;
+    //       padding:1px 10px;
+    //     }
+    //   }
+      
+    //   &:checked + p{
+    //     &:before{
+    //       background:$accent;
+    //       border-color:$accent;
+    //     }
+    //     &:after{
+    //       animation:checkDown .2s ease-in-out, checkUp .25s .2s ease-in-out;
+    //       height:7px;
+    //       width:15px;
+          
+    //       max-height:7px;
+    //       max-width:15px;
+    //       border-color:$accent2;
+    //     }
+    //   }
+    // }
+  }
+}
+  
+.date{
+  box-sizing:border-box;
+  position:relative;
+  margin:0 auto;
+  top:30px;
+  
+  height:50px;
+  width:50px;
+  border:4px double $accent;
+  border-radius:3px;
+  
+  text-align:center;
+  
+  .month{
+    letter-spacing:2px;
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:-25px;
+    text-transform:uppercase;
+    text-align:center;
+  }
+  .day{
+    background:#FFFFFD;
+    display:inline-block;
+    font-size:2em;
+    margin:5px 0 0 -15px;
+  }
+  
+  sup{
+    position:relative;
+    bottom:10px;
+  }
+}
+
+@keyframes checkDown{
+  from{
+    border-left-color:$accent2;
+    height:0;
+    width:0;
+  }
+  to{
+    border-left-color:$accent2;
+    height:7px;
+    width:0;
+  }
+}
+
+@keyframes checkUp{
+  from{
+    border-bottom-color:transparent;
+    width:0;
+  }
+  to{
+    border-bottom-color:$accent2;
+    width:15px;
+  }
+}
+
+@media (min-width:500px){
+  body{
+    padding:10px 30px; 
+  }
+  #notebook{
+    h1{
+      padding-top:60px;
+    }
+    ul sup{
+      &:before{
+        content:"i mean ";
+      }
+    }
+  } 
+  .date{
+    position:absolute;
+    top:0;
+    right:0px;
+    padding:0;
+    margin:15px;
+  }
+}
+.isDone {
+  color: green !important;
+}
+.shop-input {
+  margin-bottom: 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+    input {
+      background-color: transparent;
+      border: 0;
+      border-bottom: 4px double #89BD9E;
+      color: #474747;
+      font-family: 'Gochi Hand', cursive;
+      font-size: 30px !important;
+      font-weight: 500;
+      letter-spacing: -1px;
+      outline: 0;
+      width: 70px;
+      padding: 5px 20px;
+      text-align: center;
+  }
+
+  button {
+      font-family: 'Gochi Hand', cursive;
+    font-size: 20px;
+    	border: none;
+      padding: 0;
+      background-color: transparent;
+      cursor: pointer;
+      padding: 0.5rem 0.5rem;
+      text-transform: uppercase;
+      border-width: 2px;
+      // border-style: solid;
+      // border-color: #505783;
+
+      &:hover {
+        transform: scale(.95);
+        color: red;
+        background-color: #fff;
+    }
+    &:disabled {
+      &:hover {
+        color: grey;
+        cursor: no-drop;
+      }
+    }
+  }
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100vh; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
