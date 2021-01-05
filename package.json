@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/bumsyalao/todo-test-app#readme",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-plugin-react-html-attrs": "^2.1.0",
