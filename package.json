@@ -70,7 +70,7 @@
     "scss-loader": "0.0.1",
     "style-loader": "^0.22.0",
     "url-loader": "^1.0.1",
-    "validator": "^10.5.0",
+    "validator": "^13.7.0",
     "webpack": "3.10.0",
     "webpack-dev-middleware": "1.12.2",
     "webpack-dev-server": "2.9.5",
